@@ -1,118 +1,168 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>مكتب عبدالمجيد الزمزمي للمحاماة</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_sections.css') }}">
+  <meta charset="UTF-8" />
+  <title>مكتب عبدالمجيد الزمزمي للمحاماة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css" />
+  <link rel="stylesheet" href="static/css/home_sections.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom, #e8f0ff, #ffffff);
+      color: #222;
+      text-align: center;
+    }
+
+    header {
+      background-image: url('static/images/law_background.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: inline-block;
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .circle-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 30px auto;
+    }
+
+    .circle-menu button {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: none;
+      background-color: #005f73;
+      color: white;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .circle-menu button:hover {
+      background-color: #0a9396;
+      transform: scale(1.1);
+    }
+
+    .section-box {
+      display: none;
+      padding: 30px;
+      margin: 20px;
+      border: 2px solid #ccc;
+      border-radius: 20px;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-box.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <!-- صفحة البداية -->
-    <div class="splash">
-        <h1>مكتب عبدالمجيد الزمزمي للمحاماة والاستشارات القانونية</h1>
-    </div>
 
-    <!-- الصفحة الرئيسية -->
-    <div class="main-content hidden">
-        <div class="circle-menu">
-            <button onclick="showSection('about')">من نحن</button>
-            <button onclick="showSection('vision')">رؤيتنا</button>
-            <button onclick="showSection('mission')">رسالتنا</button>
-            <button onclick="showSection('personal')">خدمات الأفراد</button>
-            <button onclick="showSection('corporate')">خدمات الشركات</button>
-            <button onclick="showSection('waqf')">خدمات الأوقاف</button>
-            <button onclick="showSection('documentation')">خدمات التوثيق</button>
-            <button onclick="showSection('team')">فريق العمل</button>
-            <button onclick="showSection('values')">قيمنا</button>
-            <button onclick="showSection('achievements')">إنجازاتنا</button>
-            <button onclick="showSection('contact')">تواصل معنا</button>
-            <button onclick="window.location.href='/register'">التسجيل</button>
-            <button onclick="window.location.href='/login'">تسجيل الدخول</button>
-        </div>
+  <header>
+    <h1>مكتب عبدالمجيد الزمزمي للمحاماة والاستشارات القانونية</h1>
+  </header>
 
-        <!-- الأقسام -->
-        <section id="about" class="section-box">
-            <h2>من نحن / About Us</h2>
-            <p>نحن مكتب محاماة بالمملكة العربية السعودية تمتد خبراتنا القانونية والشرعية لأكثر من عقد من الزمن...</p>
-            <p><em>We are a law firm in Saudi Arabia with over a decade of legal and Sharia expertise...</em></p>
-        </section>
+  <div class="circle-menu">
+    <button onclick="showSection('about')">من نحن</button>
+    <button onclick="showSection('vision')">رؤيتنا</button>
+    <button onclick="showSection('mission')">رسالتنا</button>
+    <button onclick="showSection('personal')">خدمات الأفراد</button>
+    <button onclick="showSection('corporate')">خدمات الشركات</button>
+    <button onclick="showSection('waqf')">خدمات الأوقاف</button>
+    <button onclick="showSection('docs')">خدمات التوثيق</button>
+    <button onclick="showSection('achievements')">إنجازاتنا</button>
+    <button onclick="showSection('team')">فريق العمل</button>
+    <button onclick="showSection('values')">قيمنا</button>
+    <button onclick="showSection('contact')">تواصل معنا</button>
+    <button onclick="location.href='register.html'">التسجيل</button>
+    <button onclick="location.href='login.html'">تسجيل الدخول</button>
+  </div>
 
-        <section id="vision" class="section-box">
-            <h2>رؤيتنا / Our Vision</h2>
-            <p>أن نكون مرجعًا قانونيًا رائدًا في المملكة من خلال تقديم خدمات ذات جودة ومصداقية عالية...</p>
-            <p><em>To be a leading legal reference in the Kingdom through high-quality and credible services...</em></p>
-        </section>
+  <div id="about" class="section-box active">
+    <h2>من نحن / About Us</h2>
+    <p>نحن مكتب محاماة بالمملكة العربية السعودية نعتمد خبراتنا القانونية والشرعية الممتدة لأكثر من عقد من الزمن...</p>
+    <p><em>We are a law firm in Saudi Arabia with over a decade of legal and Sharia expertise...</em></p>
+  </div>
 
-        <section id="mission" class="section-box">
-            <h2>رسالتنا / Our Mission</h2>
-            <p>تقديم الخدمات القانونية وفقًا لأعلى المعايير المهنية بما يحقق رضا عملائنا...</p>
-            <p><em>Providing legal services to the highest professional standards to achieve client satisfaction...</em></p>
-        </section>
+  <div id="vision" class="section-box">
+    <h2>رؤيتنا / Our Vision</h2>
+    <p>أن نكون مرجعاً قانونيًا رائداً في المملكة من خلال تقديم خدمات ذات جودة ومصداقية عالية...</p>
+    <p><em>To be a leading legal reference in the Kingdom through high-quality and credible services...</em></p>
+  </div>
 
-        <section id="personal" class="section-box">
-            <h2>خدمات الأفراد / Personal Services</h2>
-            <p>نُقدم للأفراد استشارات قانونية وتمثيل أمام الجهات القضائية بكفاءة وخصوصية...</p>
-            <p><em>We offer individuals legal consultations and court representation with efficiency and confidentiality...</em></p>
-        </section>
+  <div id="mission" class="section-box">
+    <h2>رسالتنا / Our Mission</h2>
+    <p>تقديم الخدمات القانونية وفقًا لأعلى المعايير المهنية بما يحقق رضا عملائنا...</p>
+    <p><em>Providing legal services to the highest professional standards to achieve client satisfaction...</em></p>
+  </div>
 
-        <section id="corporate" class="section-box">
-            <h2>خدمات الشركات / Corporate Services</h2>
-            <p>خدماتنا تشمل تأسيس الشركات، الصياغة القانونية للعقود، والتحكيم التجاري...</p>
-            <p><em>Our services include company formation, legal contract drafting, and commercial arbitration...</em></p>
-        </section>
+  <div id="personal" class="section-box">
+    <h2>خدمات الأفراد / Personal Services</h2>
+    <p>نقدم للأفراد استشارات قانونية وتمثيل أمام الجهات القضائية بكفاءة وخصوصية...</p>
+    <p><em>We offer individuals legal consultations and court representation with efficiency and confidentiality...</em></p>
+  </div>
 
-        <section id="waqf" class="section-box">
-            <h2>خدمات الأوقاف / Waqf Services</h2>
-            <p>تأسيس وتوثيق الأوقاف وإدارتها بما يضمن تحقيق أهدافها الشرعية والاجتماعية...</p>
-            <p><em>Establishing, documenting, and managing waqf to achieve its legal and social goals...</em></p>
-        </section>
+  <div id="corporate" class="section-box">
+    <h2>خدمات الشركات / Corporate Services</h2>
+    <p>تشمل خدماتنا تأسيس الشركات، الصياغة القانونية للعقود، والتحكيم التجاري...</p>
+    <p><em>Our services include company formation, legal contract drafting, and commercial arbitration...</em></p>
+  </div>
 
-        <section id="documentation" class="section-box">
-            <h2>خدمات التوثيق / Documentation Services</h2>
-            <p>نوفر خدمات التوثيق للعقود والإقرارات والوصايا بما يتوافق مع الأنظمة السعودية...</p>
-            <p><em>We provide documentation services for contracts, statements, and wills in line with Saudi regulations...</em></p>
-        </section>
+  <div id="waqf" class="section-box">
+    <h2>خدمات الأوقاف / Waqf Services</h2>
+    <p>نوفر خدمات متكاملة لتأسيس وإدارة الأوقاف الشرعية بما يحقق الاستدامة والحوكمة...</p>
+    <p><em>We provide integrated services for the establishment and governance of Sharia-compliant endowments...</em></p>
+  </div>
 
-        <section id="team" class="section-box">
-            <h2>فريق العمل / Our Team</h2>
-            <p>يضم فريقنا نخبة من المحامين والمستشارين المتخصصين في مجالات قانونية متنوعة...</p>
-            <p><em>Our team includes a group of lawyers and consultants specialized in various legal fields...</em></p>
-        </section>
+  <div id="docs" class="section-box">
+    <h2>خدمات التوثيق / Documentation</h2>
+    <p>نوثق العقود والمعاملات بما يتوافق مع الأنظمة واللوائح المعتمدة...</p>
+    <p><em>We document contracts and transactions in compliance with applicable laws and regulations...</em></p>
+  </div>
 
-        <section id="values" class="section-box">
-            <h2>قيمنا / Our Values</h2>
-            <ul>
-                <li>النزاهة / Integrity</li>
-                <li>المهنية / Professionalism</li>
-                <li>الإتقان / Excellence</li>
-            </ul>
-        </section>
+  <div id="achievements" class="section-box">
+    <h2>إنجازاتنا / Our Achievements</h2>
+    <p>أنجزنا مئات القضايا بنجاح، وقدمنا الاستشارات القانونية للعديد من الجهات الكبرى...</p>
+  </div>
 
-        <section id="achievements" class="section-box">
-            <h2>إنجازاتنا / Achievements</h2>
-            <p>...إنهاء وفصل الكثير من النزاعات، والعمل على مئات من الدعاوى</p>
-            <p><em>Settling numerous disputes and handling hundreds of legal cases...</em></p>
-        </section>
+  <div id="team" class="section-box">
+    <h2>فريق العمل / Our Team</h2>
+    <p>يضم المكتب نخبة من المحامين والمستشارين القانونيين ذوي الكفاءة العالية...</p>
+  </div>
 
-        <section id="contact" class="section-box">
-            <h2>تواصل معنا / Contact</h2>
-            <p>📞 0531991910<br>📧 agz.lawyer@gmail.com<br>📍 جدة - طريق الأندلس - حي الرويس</p>
-        </section>
-    </div>
+  <div id="values" class="section-box">
+    <h2>قيمنا / Our Values</h2>
+    <p>الصدق، النزاهة، الكفاءة، الالتزام، والخصوصية في التعامل مع العملاء...</p>
+  </div>
 
-    <script>
-        setTimeout(() => {
-            document.querySelector('.splash').style.display = 'none';
-            document.querySelector('.main-content').classList.remove('hidden');
-        }, 5000);
+  <div id="contact" class="section-box">
+    <h2>تواصل معنا / Contact Us</h2>
+    <p>رقم الجوال: 0555555555</p>
+    <p>البريد الإلكتروني: info@abdulmajeedlaw.com</p>
+  </div>
 
-        function showSection(id) {
-            document.querySelectorAll('.section-box').forEach(el => {
-                el.classList.remove('active');
-            });
-            document.getElementById(id).classList.add('active');
-        }
-    </script>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
-
