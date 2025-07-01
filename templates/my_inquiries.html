@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>استشاراتي</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #fefefe;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+      font-size: 1em;
+    }
+
+    table th {
+      background-color: #004080;
+      color: white;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #004080;
+      font-weight: bold;
+    }
+
+    .file-link {
+      color: #004080;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📄 قائمة استشاراتي</h2>
+
+    {% if inquiries %}
+      <table>
+        <thead>
+          <tr>
+            <th>رقم</th>
+            <th>العنوان</th>
+            <th>النص</th>
+            <th>الملف</th>
+            <th>الرد</th>
+            <th>الوقت</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for inquiry in inquiries %}
+            <tr>
+              <td>{{ inquiry.id }}</td>
+              <td>{{ inquiry.subject }}</td>
+              <td>{{ inquiry.message }}</td>
+              <td>
+                {% if inquiry.file %}
+                  <a href="{{ url_for('static', filename='uploads/' ~ inquiry.file) }}" target="_blank" class="file-link">📎 تحميل</a>
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+              <td>{{ inquiry.reply if inquiry.reply else "لا يوجد رد بعد" }}</td>
+              <td>{{ inquiry.timestamp }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p style="text-align: center;">لا توجد استشارات بعد.</p>
+    {% endif %}
+
+    <a href="/user_home" class="back-link">🔙 العودة إلى الصفحة الرئيسية</a>
+  </div>
+
+</body>
+</html>

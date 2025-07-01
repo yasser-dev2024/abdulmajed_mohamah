@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الصفحة الخاصة بالمستخدم</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #f0f8ff;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 20px;
+    }
+
+    form label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    form button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #0066cc;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .links a {
+      color: #004080;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+
+    .flash-message {
+      text-align: center;
+      color: green;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>مرحبًا {{ user.full_name }}</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-message">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/submit_inquiry" enctype="multipart/form-data">
+      <label for="subject">عنوان الاستشارة</label>
+      <input type="text" name="subject" id="subject" required>
+
+      <label for="message">نص الاستشارة</label>
+      <textarea name="message" id="message" rows="5" required></textarea>
+
+      <label for="file">إرفاق ملف (اختياري)</label>
+      <input type="file" name="file" id="file">
+
+      <button type="submit">إرسال الاستشارة</button>
+    </form>
+
+    <div class="links">
+      <a href="/my_inquiries">📄 استشاراتي</a>
+      <a href="/logout">🚪 تسجيل الخروج</a>
+    </div>
+  </div>
+
+</body>
+</html>

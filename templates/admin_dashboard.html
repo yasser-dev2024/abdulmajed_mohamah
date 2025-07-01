@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة تحكم الأدمن</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      font-size: 0.95em;
+    }
+
+    table th {
+      background-color: #004080;
+      color: white;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f7f7f7;
+    }
+
+    form textarea {
+      width: 100%;
+      height: 80px;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1em;
+      margin-top: 5px;
+    }
+
+    form button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    form button:hover {
+      background-color: #0066cc;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      color: #004080;
+      font-weight: bold;
+    }
+
+    .file-link {
+      color: #004080;
+      text-decoration: underline;
+    }
+
+    .user-name {
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>لوحة تحكم الأدمن - جميع الاستشارات</h2>
+
+    {% if inquiries %}
+      <table>
+        <thead>
+          <tr>
+            <th>رقم</th>
+            <th>المستخدم</th>
+            <th>العنوان</th>
+            <th>النص</th>
+            <th>الملف</th>
+            <th>الرد</th>
+            <th>الوقت</th>
+            <th>الإجراء</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for inquiry in inquiries %}
+            <tr>
+              <td>{{ inquiry.id }}</td>
+              <td class="user-name">
+                {% if users[inquiry.user] %}
+                  {{ users[inquiry.user].full_name }}
+                {% else %}
+                  غير معروف
+                {% endif %}
+              </td>
+              <td>{{ inquiry.subject }}</td>
+              <td>{{ inquiry.message }}</td>
+              <td>
+                {% if inquiry.file %}
+                  <a href="{{ url_for('static', filename='uploads/' ~ inquiry.file) }}" target="_blank" class="file-link">📎 تحميل</a>
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+              <td>{{ inquiry.reply if inquiry.reply else "لا يوجد رد" }}</td>
+              <td>{{ inquiry.timestamp }}</td>
+              <td>
+                <form action="/reply/{{ inquiry.id }}" method="POST">
+                  <textarea name="reply" placeholder="أدخل الرد هنا" required></textarea>
+                  <button type="submit">إرسال الرد</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p style="text-align: center;">لا توجد استشارات حالياً.</p>
+    {% endif %}
+
+    <div class="back-link">
+      <a href="/logout">🚪 تسجيل الخروج</a>
+    </div>
+  </div>
+
+</body>
+</html>

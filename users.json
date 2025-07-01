@@ -1,0 +1,18 @@
+{
+  "123456789": {
+    "full_name": "مدير النظام",
+    "civil_id": "123456789",
+    "email": "admin@example.com",
+    "sector": "حكومي",
+    "phone": "0500000000",
+    "password": "admin123"
+  },
+  "1010101010": {
+    "full_name": "أحمد بن صالح",
+    "civil_id": "1010101010",
+    "email": "ahmed@example.com",
+    "sector": "خاص",
+    "phone": "0555555555",
+    "password": "userpass"
+  }
+}

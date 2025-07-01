@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(to bottom, #e8f0ff, #ffffff);
+  color: #000;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+.splash {
+  height: 100vh;
+  background: #004080;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  text-align: center;
+  padding: 2rem;
+  font-weight: bold;
+  animation: fadeOut 5s ease-in-out forwards;
+}
+
+.main-content {
+  padding: 30px 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.hidden {
+  display: none;
+}
+
+/* القائمة الدائرية */
+.circle-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.circle-menu button {
+  background-color: #004080;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px;
+  text-align: center;
+  line-height: 1.4;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.circle-menu button:hover {
+  background-color: #0066cc;
+  transform: scale(1.05);
+}
+
+/* صناديق الأقسام */
+.section-box {
+  background-color: #f8f9ff;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 900px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.section-box h2 {
+  color: #004080;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid #004080;
+  padding-bottom: 10px;
+}
+
+.section-box p, .section-box ul {
+  font-size: 1.1em;
+  line-height: 1.8;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.section-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section-box ul li {
+  margin-bottom: 10px;
+}
+
+/* تحسين العرض على الجوال */
+@media (max-width: 768px) {
+  .circle-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .circle-menu button {
+    width: 150px;
+    height: 60px;
+    border-radius: 30px;
+  }
+
+  .section-box {
+    margin: 15px 10px;
+    padding: 20px;
+  }
+}
