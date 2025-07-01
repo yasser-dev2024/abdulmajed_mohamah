@@ -1,117 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
+/* الخط العربي الرئيسي */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&display=swap');
 
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Cairo', sans-serif;
-  background: linear-gradient(to bottom, #e8f0ff, #ffffff);
-  color: #000;
-  direction: rtl;
-  overflow-x: hidden;
-}
-
-.splash {
-  height: 100vh;
-  background: #004080;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5em;
+  background: linear-gradient(to bottom, #f0f4ff, #ffffff);
+  color: #222;
   text-align: center;
-  padding: 2rem;
-  font-weight: bold;
-  animation: fadeOut 5s ease-in-out forwards;
 }
 
-.main-content {
-  padding: 30px 20px;
-  background-color: rgba(255, 255, 255, 0.95);
+/* رأس الصفحة */
+header {
+  background-image: url('../images/law_background.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 20px;
 }
 
-.hidden {
-  display: none;
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px 40px;
+  border-radius: 20px;
+  display: inline-block;
 }
 
-/* القائمة الدائرية */
+/* الأزرار الدائرية */
 .circle-menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 30px;
+  margin: 30px auto;
 }
 
 .circle-menu button {
-  background-color: #004080;
-  color: white;
-  border: none;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  width: 110px;
-  height: 110px;
-  font-size: 1em;
+  border: none;
+  background-color: #005f73;
+  color: white;
+  font-size: 0.9em;
   cursor: pointer;
   transition: 0.3s;
-  padding: 10px;
-  text-align: center;
-  line-height: 1.4;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .circle-menu button:hover {
-  background-color: #0066cc;
-  transform: scale(1.05);
+  background-color: #0a9396;
+  transform: scale(1.1);
 }
 
 /* صناديق الأقسام */
 .section-box {
-  background-color: #f8f9ff;
-  margin: 30px auto;
-  padding: 25px;
+  display: none;
+  padding: 30px;
+  margin: 20px;
+  border: 2px solid #ccc;
   border-radius: 20px;
-  max-width: 900px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.section-box.active {
+  display: block;
 }
 
 .section-box h2 {
-  color: #004080;
   font-size: 1.8em;
+  color: #002e4d;
   margin-bottom: 15px;
-  text-align: center;
-  border-bottom: 2px solid #004080;
-  padding-bottom: 10px;
 }
 
-.section-box p, .section-box ul {
+.section-box p {
   font-size: 1.1em;
   line-height: 1.8;
-  text-align: center;
-  margin: 10px 0;
 }
 
-.section-box ul {
-  list-style: none;
-  padding: 0;
+/* تأثير الظهور */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.section-box ul li {
-  margin-bottom: 10px;
-}
-
-/* تحسين العرض على الجوال */
+/* متجاوبة مع الجوال */
 @media (max-width: 768px) {
   .circle-menu {
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
   }
 
   .circle-menu button {
-    width: 150px;
-    height: 60px;
-    border-radius: 30px;
+    width: 70px;
+    height: 70px;
+    font-size: 0.8em;
+  }
+
+  header h1 {
+    font-size: 1.5em;
+    padding: 15px;
   }
 
   .section-box {
-    margin: 15px 10px;
+    margin: 15px;
     padding: 20px;
   }
 }
